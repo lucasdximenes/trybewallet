@@ -1,12 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import { setEmail } from '../redux/actions';
+import React from "react";
+import { connect } from "react-redux";
+import propTypes from "prop-types";
+import { setEmail } from "../redux/actions";
 
 class Login extends React.Component {
   state = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     isDisabled: true,
   };
 
@@ -33,46 +33,63 @@ class Login extends React.Component {
     const { email } = this.state;
     const { setEmail: addEmail, history } = this.props;
     addEmail(email);
-    history.push('/carteira');
+    history.push("/carteira");
   };
 
   render() {
     const { email, password, isDisabled } = this.state;
     return (
       <div>
-        <h1>Login</h1>
+        <h1 className="text-center text-4xl font-bold text-gray-700">
+          Trybewallet Login
+        </h1>
         <form action="#">
-          <label htmlFor="email">
-            Email:
-            <input
-              data-testid="email-input"
-              type="email"
-              name="email"
-              id="email"
-              value={ email }
-              onChange={ this.handleChange }
-            />
-          </label>
-
-          <label htmlFor="password">
-            Password:
-            <input
-              data-testid="password-input"
-              type="password"
-              name="password"
-              id="password"
-              value={ password }
-              onChange={ this.handleChange }
-            />
-          </label>
-
-          <button
-            type="submit"
-            disabled={ isDisabled }
-            onClick={ this.handleSubmit }
-          >
-            Entrar
-          </button>
+          <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center mb-2.5">
+              <label
+                className="self-start text-xl font-bold text-gray-700"
+                htmlFor="email"
+              >
+                Email:
+              </label>
+              <input
+                data-testid="email-input"
+                className="border-2 border-black w-64 h-10 rounded-md text-xl p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="flex flex-col items-center mb-2.5">
+              <label
+                className="self-start text-xl font-bold text-gray-700"
+                htmlFor="password"
+              >
+                Password:
+              </label>
+              <input
+                data-testid="password-input"
+                className="border-2 border-black w-64 h-10 rounded-md text-xl p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                type="password"
+                name="password"
+                id="password"
+                value={password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-64 h-10 mt-4 disabled:opacity-50 disabled:hover:bg-blue-500 disabled:cursor-not-allowed"
+                disabled={isDisabled}
+                onClick={this.handleSubmit}
+              >
+                Entrar
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     );
