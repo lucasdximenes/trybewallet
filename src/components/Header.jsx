@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class Header extends Component {
   render() {
@@ -10,11 +10,31 @@ class Header extends Component {
       return totalValue;
     }, 0);
     return (
-      <div>
-        <h1>Header</h1>
-        <p data-testid="email-field">{email}</p>
-        <p data-testid="total-field">{total.toFixed(2)}</p>
-        <p data-testid="header-currency-field">BRL</p>
+      <div className="flex flex-col items-center justify-center bg-gray-200 w-full h-full sm:flex-row sm:justify-around">
+        <h1 className="text-center text-4xl font-bold text-gray-700">
+          Trybewallet
+        </h1>
+        <p
+          data-testid="email-field"
+          className="text-center text-2xl font-bold text-gray-700 mb-2.5"
+        >
+          {email}
+        </p>
+        <p
+          data-testid="total-field"
+          className="text-center text-2xl font-bold text-gray-700 mb-2.5"
+        >
+          {total.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </p>
+        <p
+          data-testid="header-currency-field"
+          className="text-center text-2xl font-bold text-gray-700 mb-2.5"
+        >
+          BRL
+        </p>
       </div>
     );
   }
@@ -34,9 +54,9 @@ Header.propTypes = {
       exchangeRates: PropTypes.objectOf(
         PropTypes.shape({
           ask: PropTypes.string,
-        }),
+        })
       ),
-    }),
+    })
   ).isRequired,
 };
 
